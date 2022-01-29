@@ -30,3 +30,7 @@ second (_, y, _) = y
 
 third :: (a, b, c) -> c
 third (_, _, z) = z
+
+head' :: [a] -> a
+head' [] = error "Can't call head on an empty list, dummy!"
+head' (x:_) = x
