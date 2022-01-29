@@ -2,12 +2,10 @@ bmiTell :: Double -> Double -> String
 bmiTell weight height
   | bmi <= skinny = "You're underweight, eat more!"
   | bmi <= normal = "Looking good!"
-  | bmi <= overweight = "You're overweight. Let's work out together!"
+  | bmi <= fat = "You're overweight. Let's work out together!"
   | otherwise = "You're obese. Go see a doctor."
   where bmi = weight / height ^ 2
-        skinny = 18.5
-        normal = 25.0
-        overweight = 30.0
+        (skinny, normal, fat) = (18.5, 25.0, 30.0)
 
 max' :: (Ord a) => a -> a -> a
 max' a b
