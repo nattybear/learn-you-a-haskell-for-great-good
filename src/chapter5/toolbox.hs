@@ -7,3 +7,7 @@ filter' _ [] = []
 filter' p (x:xs)
   | p x       = x : filter' p xs
   | otherwise = filter' p xs
+
+largestDivisible :: Integer
+largestDivisible = head (filter p [99999,99999..])
+  where p x = x `mod` 3829 == 0
