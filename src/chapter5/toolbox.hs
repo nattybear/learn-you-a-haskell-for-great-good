@@ -20,9 +20,3 @@ chain n
 
 numLongChains :: Int
 numLongChains = length (filter (\xs -> length xs > 15) (map chain [1..100]))
-
-addThree :: Int -> Int -> Int -> Int
-addThree x y z = x + y + z
-
-addThree' :: Int -> Int -> Int -> Int
-addThree' = \x -> \y -> \z -> x + y + z
