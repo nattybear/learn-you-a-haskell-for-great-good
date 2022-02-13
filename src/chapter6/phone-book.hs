@@ -1,3 +1,5 @@
+import qualified Data.Map as Map
+
 phoneBook =
   [("betty", "555-2938")
   ,("bonnie", "452-2928")
