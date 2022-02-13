@@ -1,4 +1,4 @@
 import Data.List
 
 wordNums :: String -> [(String,Int)]
-wordNums = map (\ws -> (head ws, length ws)) . group . sort . words
+wordNums xs = map (\xs -> (head xs, length xs)) (group (sort (words xs)))
