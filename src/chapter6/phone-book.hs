@@ -1,6 +1,7 @@
 import qualified Data.Map as Map
 
-phoneBook =
+phoneBook :: Map.Map String String
+phoneBook = Map.fromList $
   [("betty", "555-2938")
   ,("bonnie", "452-2928")
   ,("patsy", "493-2938")
