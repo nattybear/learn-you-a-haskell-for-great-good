@@ -5,6 +5,10 @@ data Tree a
   | Node a (Tree a) (Tree a)
   deriving (Show)
 
+instance Functor Tree where
+  fmap f EmptyTree = EmptyTree
+  fmap f (Node x left right) = Node (f x) (fmap f left) (fmap f right)
+
 singleton :: a -> Tree a
 singleton x = Node x EmptyTree EmptyTree
 
