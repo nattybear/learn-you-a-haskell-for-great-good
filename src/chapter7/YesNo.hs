@@ -1,3 +1,4 @@
+import TrafficLight
 import Tree
 
 class YesNo a where
@@ -20,4 +21,8 @@ instance YesNo (Maybe a) where
 
 instance YesNo (Tree a) where
   yesno EmptyTree = False
+  yesno _ = True
+
+instance YesNo TrafficLight where
+  yesno Red = False
   yesno _ = True
