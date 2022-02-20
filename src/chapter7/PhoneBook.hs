@@ -11,3 +11,6 @@ phoneBook =
   ,("wendy", "939-8282")
   ,("penny", "853-2492")
   ]
+
+isPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool
+isPhoneBook name pnumber pbook = (name, pnumber) `elem` pbook
