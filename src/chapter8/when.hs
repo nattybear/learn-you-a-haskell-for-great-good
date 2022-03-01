@@ -1,6 +1,5 @@
-import Control.Monad
-
 main = do
   input <- getLine
-  when (input == "SWORDFISH") $ do
-    putStrLn input
+  if (input == "SWORDFISH")
+    then putStrLn input
+    else return ()
