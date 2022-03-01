@@ -1,4 +1,4 @@
 main = do
-  a <- return "hell"
-  b <- return "yeah!"
+  let a = "hell"
+      b = "yeah!"
   putStrLn $ a ++ " " ++ b
