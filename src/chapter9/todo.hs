@@ -30,7 +30,6 @@ remove [fileName, numberString] = do
   let todoTasks = lines contents
       numberedTasks = zipWith (\n line -> show n ++ " - " ++ line)
                                 [0..] todoTasks
-  putStrLn "These are your TO-DO items:"
   let number = read numberString
       newTodoItems = unlines $ delete (todoTasks !! number) todoTasks
   bracketOnError (openTempFile "." "temp")
