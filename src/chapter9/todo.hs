@@ -8,3 +8,7 @@ dispatch :: String -> [String] -> IO ()
 dispatch "add" = add
 dispatch "view" = view
 dispatch "remove" = remove
+
+main = do
+  (command:argList) <- getArgs
+  dispatch command argList
