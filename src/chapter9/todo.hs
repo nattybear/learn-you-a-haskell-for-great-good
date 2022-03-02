@@ -9,6 +9,9 @@ dispatch "add" = add
 dispatch "view" = view
 dispatch "remove" = remove
 
+add :: [String] -> IO ()
+add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
+
 main = do
   (command:argList) <- getArgs
   dispatch command argList
