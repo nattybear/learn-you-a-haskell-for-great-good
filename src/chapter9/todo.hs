@@ -9,6 +9,10 @@ dispatch "add" = add
 dispatch "view" = view
 dispatch "remove" = remove
 
+main = do
+  (command:argList) <- getArgs
+  dispatch command argList
+
 add :: [String] -> IO ()
 add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
 
@@ -38,7 +42,3 @@ remove [fileName, numberString] = do
       hClose tempHandle
       removeFile fileName
       renameFile tempName fileName)
-
-main = do
-  (command:argList) <- getArgs
-  dispatch command argList
