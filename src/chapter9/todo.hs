@@ -15,8 +15,14 @@ doesntExist command _ =
   putStrLn $ "The " ++ command ++ " command doesn't exist"
 
 main = do
-  (command:argList) <- getArgs
-  dispatch command argList
+  args <- getArgs
+  if length args > 0
+    then
+      let command:argList = args
+      in dispatch command argList
+    else
+      putStrLn "The todo program takes one command: \
+               \add, view, remove"
 
 add :: [String] -> IO ()
 add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
