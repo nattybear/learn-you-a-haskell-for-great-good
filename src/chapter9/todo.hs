@@ -28,9 +28,7 @@ remove :: [String] -> IO ()
 remove [fileName, numberString] = do
   contents <- readFile fileName
   let todoTasks = lines contents
-      numberedTasks = zipWith (\n line -> show n ++ " - " ++ line)
-                                [0..] todoTasks
-  let number = read numberString
+      number = read numberString
       newTodoItems = unlines $ delete (todoTasks !! number) todoTasks
   bracketOnError (openTempFile "." "temp")
     (\(tempName, tempHandle) -> do
