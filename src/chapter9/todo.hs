@@ -29,6 +29,7 @@ view [fileName] = do
       numberedTasks = zipWith (\n line -> show n ++ " - " ++ line)
                       [0..] todoTasks
   putStr $ unlines numberedTasks
+view _ = putStrLn "The view command takes one argument"
 
 remove :: [String] -> IO ()
 remove [fileName, numberString] = do
@@ -45,3 +46,4 @@ remove [fileName, numberString] = do
       hClose tempHandle
       removeFile fileName
       renameFile tempName fileName)
+remove _ = putStrLn "The remove command takes exactly two arguments"
