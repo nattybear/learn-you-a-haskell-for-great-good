@@ -25,31 +25,45 @@ main = do
                \add, view, remove"
 
 add :: [String] -> IO ()
-add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
+add [fileName, todoItem] = do
+  b <- doesFileExist fileName
+  if b
+    then appendFile fileName (todoItem ++ "\n")
+    else putStrLn $ fileName ++ " does not exist"
 add _ = putStrLn "The add command takes exactly two arguments"
 
 view :: [String] -> IO ()
 view [fileName] = do
-  contents <- readFile fileName
-  let todoTasks = lines contents
-      numberedTasks = zipWith (\n line -> show n ++ " - " ++ line)
-                      [0..] todoTasks
-  putStr $ unlines numberedTasks
+  b <- doesFileExist fileName
+  if b
+    then do
+      contents <- readFile fileName
+      let todoTasks = lines contents
+          numberedTasks = zipWith (\n line -> show n ++ " - " ++ line)
+                          [0..] todoTasks
+      putStr $ unlines numberedTasks
+    else
+      putStrLn $ fileName ++ " does not exist"
 view _ = putStrLn "The view command takes one argument"
 
 remove :: [String] -> IO ()
 remove [fileName, numberString] = do
-  contents <- readFile fileName
-  let todoTasks = lines contents
-      number = read numberString
-      newTodoItems = unlines $ delete (todoTasks !! number) todoTasks
-  bracketOnError (openTempFile "." "temp")
-    (\(tempName, tempHandle) -> do
-      hClose tempHandle
-      removeFile tempName)
-    (\(tempName, tempHandle) -> do
-      hPutStr tempHandle newTodoItems
-      hClose tempHandle
-      removeFile fileName
-      renameFile tempName fileName)
+  b <- doesFileExist fileName
+  if b
+    then do
+      contents <- readFile fileName
+      let todoTasks = lines contents
+          number = read numberString
+          newTodoItems = unlines $ delete (todoTasks !! number) todoTasks
+      bracketOnError (openTempFile "." "temp")
+        (\(tempName, tempHandle) -> do
+          hClose tempHandle
+          removeFile tempName)
+        (\(tempName, tempHandle) -> do
+          hPutStr tempHandle newTodoItems
+          hClose tempHandle
+          removeFile fileName
+          renameFile tempName fileName)
+    else
+      putStrLn $ fileName ++ " does not exist"
 remove _ = putStrLn "The remove command takes exactly two arguments"
