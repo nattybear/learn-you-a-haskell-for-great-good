@@ -12,3 +12,6 @@ heathrowToLondon = [ Section 50 10 30
                    , Section 40 20 25
                    , Section 10 8 0
                    ]
+
+data Label = A | B | C deriving (Show)
+type Path = [(Label, Int)]
