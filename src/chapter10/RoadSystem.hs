@@ -15,3 +15,6 @@ heathrowToLondon = [ Section 50 10 30
 
 data Label = A | B | C deriving (Show)
 type Path = [(Label, Int)]
+
+optimalPath :: RoadSystem -> Path
+optimalPath = undefined
