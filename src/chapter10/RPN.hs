@@ -1,3 +1,3 @@
 solveRPN :: String -> Double
-solveRPN expression = head (foldl foldingFunction [] (words expression))
+solveRPN = head . foldl foldingFunction [] . words
   where foldingFunction stack item = undefined
