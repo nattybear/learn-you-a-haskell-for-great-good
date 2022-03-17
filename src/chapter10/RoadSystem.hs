@@ -18,3 +18,6 @@ type Path = [(Label, Int)]
 
 optimalPath :: RoadSystem -> Path
 optimalPath = undefined
+
+roadStep :: (Path, Path) -> Section -> (Path, Path)
+roadStep = undefined
