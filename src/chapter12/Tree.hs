@@ -1,3 +1,4 @@
+import           Any
 import qualified Data.Foldable as F
 
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show)
