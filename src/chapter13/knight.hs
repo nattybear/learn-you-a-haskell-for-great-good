@@ -1,0 +1,1 @@
+type KnightPos = (Int, Int)
