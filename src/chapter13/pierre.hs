@@ -13,3 +13,6 @@ landRight n (left, right)
 
 (-:) :: a -> (a -> b) -> b
 x -: f = f x
+
+banana :: Pole -> Maybe Pole
+banana _ = Nothing
