@@ -15,3 +15,6 @@ in3 start = do
   first <- moveKnight start
   second <- moveKnight first
   moveKnight second
+
+canReachIn3 :: KnightPos -> KnightPos -> Bool
+canReachIn3 start end = end `elem` in3 start
