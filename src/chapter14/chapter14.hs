@@ -57,9 +57,9 @@ instance Monoid (DiffList a) where
   mempty = DiffList (\xs -> [] ++ xs)
   (DiffList f) `mappend` (DiffList g) = DiffList (\xs -> f (g xs))
 
-finalCountDown :: Int -> Writer (DiffList String) ()
+finalCountDown :: Int -> Writer [String] ()
 finalCountDown 0 = do
-  tell (toDiffList ["0"])
+  tell ["0"]
 finalCountDown x = do
   finalCountDown (x-1)
-  tell (toDiffList [show x])
+  tell [show x]
