@@ -1,3 +1,4 @@
+import Control.Monad.Instances
 import Control.Monad.Writer
 import Data.Monoid
 
@@ -63,3 +64,9 @@ finalCountDown 0 = do
 finalCountDown x = do
   finalCountDown (x-1)
   tell [show x]
+
+addStuff :: Int -> Int
+addStuff = do
+  a <- (*2)
+  b <- (+10)
+  return (a+b)
