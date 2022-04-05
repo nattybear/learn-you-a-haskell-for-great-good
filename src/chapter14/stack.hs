@@ -3,7 +3,10 @@ import Control.Monad.State
 type Stack = [Int]
 
 pop :: State Stack Int
-pop = state $ \(x:xs) -> (x, xs)
+pop = do
+  (x:xs) <- get
+  put xs
+  return x
 
 push :: Int -> State Stack ()
 push a = state $ \xs -> ((), a:xs)
