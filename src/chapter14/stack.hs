@@ -9,7 +9,9 @@ pop = do
   return x
 
 push :: Int -> State Stack ()
-push a = state $ \xs -> ((), a:xs)
+push x = do
+  xs <- get
+  put (x:xs)
 
 stackManip :: State Stack Int
 stackManip = do
