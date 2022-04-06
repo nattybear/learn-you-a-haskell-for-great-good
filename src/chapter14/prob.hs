@@ -10,3 +10,7 @@ thisSituation = Prob
   [(Prob [('a',1%2),('b',1%2)], 1%4)
   ,(Prob [('c',1%2),('d',1%2)], 3%4)
   ]
+
+flatten :: Prob (Prob a) -> Prob a
+flatten (Prob xs) = Prob $ concat $ map multAll xs
+  where multAll (Prob innerxs, p) = map (\(x, r) -> (x, p*r)) innerxs
