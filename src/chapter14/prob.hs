@@ -40,3 +40,10 @@ flipThree = do
   b <- coin
   c <- loadedCoin
   return (all (==Tails) [a,b,c])
+
+foo :: Eq a => [(a, Rational)] -> [(a, Rational)]
+foo [] = []
+foo [x] = [x]
+foo ((x,p):(y,q):xs) = if x == y
+                       then foo $ (x,p+q):xs
+                       else (x,p) : (y,q) : foo xs
