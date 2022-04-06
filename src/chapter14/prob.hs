@@ -24,3 +24,11 @@ instance Monad Prob where
 instance Applicative Prob where
   pure = return
   (<*>) = ap
+
+data Coin = Heads | Tails deriving (Show, Eq)
+
+coin :: Prob Coin
+coin = Prob [(Heads,1%2),(Tails,1%2)]
+
+loadedCoin :: Prob Coin
+loadedCoin = Prob [(Heads,1%10),(Tails,9%10)]
