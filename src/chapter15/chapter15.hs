@@ -42,8 +42,8 @@ type Breadcrumbs a = [Crumb a]
 goLeft :: (Tree a, Breadcrumbs a) -> (Tree a, Breadcrumbs a)
 goLeft (Node x l r, bs) = (l, LeftCrumb x r:bs)
 
-goRight :: (Tree a, Breadcrumbs) -> (Tree a, Breadcrumbs)
-goRight (Node _ _ r, bs) = (r, R:bs)
+goRight :: (Tree a, Breadcrumbs a) -> (Tree a, Breadcrumbs a)
+goRight (Node x l r, bs) = (r, RightCrumb x l:bs)
 
 (-:) :: a -> (a -> b) -> b
 x -: f = f x
