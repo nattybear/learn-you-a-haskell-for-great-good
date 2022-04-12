@@ -53,3 +53,5 @@ data Crumb a = LeftCrumb a (Tree a) | RightCrumb a (Tree a) deriving (Show)
 goUp :: (Tree a, Breadcrumbs a) -> (Tree a, Breadcrumbs a)
 goUp (t, LeftCrumb x r:bs) = (Node x t r, bs)
 goUp (t, RightCrumb x l:bs) = (Node x l t, bs)
+
+type Zipper a = (Tree a, Breadcrumbs a)
