@@ -41,3 +41,6 @@ fsTo name (Folder folderName items, bs) =
 nameIs :: Name -> FSItem -> Bool
 nameIs name (Folder folderName _) = name == folderName
 nameIs name (File fileName _) = name == fileName
+
+(-:) :: a -> (a -> b) -> b
+x -: f = f x
