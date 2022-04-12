@@ -44,3 +44,7 @@ nameIs name (File fileName _) = name == fileName
 
 (-:) :: a -> (a -> b) -> b
 x -: f = f x
+
+fsRename :: Name -> FSZipper -> FSZipper
+fsRename newName (Folder name items, bs) = (Folder newName items, bs)
+fsRename newName (File name dat, bs) = (File newName dat, bs)
