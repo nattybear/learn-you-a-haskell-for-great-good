@@ -52,9 +52,10 @@ goRight :: Zipper a -> Maybe (Zipper a)
 goRight (Node x l r, bs) = Just (r, RightCrumb x l:bs)
 goRight (Empty, _) = Nothing
 
-goUp :: Zipper a -> Zipper a
-goUp (t, LeftCrumb x r:bs) = (Node x t r, bs)
-goUp (t, RightCrumb x l:bs) = (Node x l t, bs)
+goUp :: Zipper a -> Maybe (Zipper a)
+goUp (t, LeftCrumb x r:bs) = Just (Node x t r, bs)
+goUp (t, RightCrumb x l:bs) = Just (Node x l t, bs)
+goUp (_, []) = Nothing
 
 modify :: (a -> a) -> Zipper a -> Zipper a
 modify f (Node x l r, bs) = (Node (f x) l r, bs)
@@ -65,7 +66,8 @@ attach t (_, bs) = (t, bs)
 
 topMost :: Zipper a -> Zipper a
 topMost (t, []) = (t, [])
-topMost z = topMost (goUp z)
+topMost z = topMost z'
+  where Just z' = goUp z
 
 (-:) :: a -> (a -> b) -> b
 x -: f = f x
